@@ -45,7 +45,11 @@
 
 	<!-- use jee:jndi-lookup for dataSource for jndi datasource -->
 	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+		p:maxActive="100" 
+		p:maxIdle="20"
+		p:removeAbandoned="true"
+		p:removeAbandonedTimeout="20"
 		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
 		p:username="${jdbc.username}" p:password="${jdbc.password}" />
 
